@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "canvas": "^3.2.3",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "mineflayer": "^4.37.1",
+    "prismarine-viewer": "^1.33.0",
+    "socket.io": "^4.8.3",
+    "socks-proxy-agent": "^10.1.0"
+  }
+}
