@@ -1,0 +1,5 @@
+{
+  "server_port": 5000,
+  "frontend_port": 3000,
+  "bot_reconnect_interval_ms": 3000
+}

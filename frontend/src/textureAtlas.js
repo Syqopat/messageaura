@@ -1,4 +1,4 @@
-import * as THREE from "three";
+﻿import * as THREE from "three";
 
 
 
@@ -341,7 +341,6 @@ export class TextureAtlas {
       .replace("_button", "");
 
     if (baseName !== blockName) {
-      // Wood types usually map to planks
       const woods = [
         "oak",
         "spruce",

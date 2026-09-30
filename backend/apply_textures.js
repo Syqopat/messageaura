@@ -1,4 +1,4 @@
-const fs = require("fs");
+﻿const fs = require("fs");
 const path = require("path");
 
 const sourceBase = path.join(
@@ -19,7 +19,7 @@ const destBase = path.join(
 );
 
 if (!fs.existsSync(sourceBase)) {
-  console.error("Kaynak texture klasörü bulunamadı: " + sourceBase);
+  console.error("Kaynak texture klasÃ¶rÃ¼ bulunamadÄ±: " + sourceBase);
   process.exit(1);
 }
 
@@ -32,7 +32,7 @@ const sourceItems = fs.existsSync(path.join(sourceBase, "item"))
   : path.join(sourceBase, "items");
 
 if (!fs.existsSync(destBase)) {
-  console.error("Prismarine-viewer textures klasörü bulunamadı: " + destBase);
+  console.error("Prismarine-viewer textures klasÃ¶rÃ¼ bulunamadÄ±: " + destBase);
   process.exit(1);
 }
 
@@ -72,4 +72,4 @@ versions.forEach((version) => {
   }
 });
 
-console.log("Texture kopyalama tamamlandı!");
+console.log("Texture kopyalama tamamlandÄ±!");

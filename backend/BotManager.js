@@ -1,4 +1,4 @@
-const Bot = require("./Bot");
+﻿const Bot = require("./Bot");
 
 class BotManager {
   constructor(io) {

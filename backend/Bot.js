@@ -1,4 +1,4 @@
-const mineflayer = require("mineflayer");
+﻿const mineflayer = require("mineflayer");
 const { v4: uuidv4 } = require("uuid");
 const Vec3 = require("vec3").Vec3;
 const mineflayerViewer = require("prismarine-viewer").mineflayer;
@@ -136,7 +136,7 @@ class Bot {
             }
           };
         } catch (e) {
-          this.log(`Proxy parse hatası: ${e.message}`);
+          this.log(`Proxy parse hatasÄ±: ${e.message}`);
         }
       }
 
@@ -192,11 +192,11 @@ class Bot {
       this.status = "online";
       this.reconnectAttempts = 0;
       this.emitUpdate();
-      this.log("Sunucuya bağlanıldı.");
+      this.log("Sunucuya baÄŸlanÄ±ldÄ±.");
     });
 
     this.bot.on("spawn", () => {
-      this.log("Dünyada doğuldu.");
+      this.log("DÃ¼nyada doÄŸuldu.");
       this.lastScanCenter = null;
 
       
@@ -207,17 +207,17 @@ class Bot {
             firstPerson: true,
           });
           this.log(
-            `3D Görüntüleyici port ${this.viewerPort} üzerinde başlatıldı.`,
+            `3D GÃ¶rÃ¼ntÃ¼leyici port ${this.viewerPort} Ã¼zerinde baÅŸlatÄ±ldÄ±.`,
           );
         } catch (e) {
-          this.log(`Viewer başlatılamadı: ${e.message}`);
+          this.log(`Viewer baÅŸlatÄ±lamadÄ±: ${e.message}`);
         }
       }
       this.emitUpdate();
 
       
       if (this.macros && this.macros.length > 0) {
-        this.log(`Makrolar çalıştırılıyor (${this.macros.length} adet)...`);
+        this.log(`Makrolar Ã§alÄ±ÅŸtÄ±rÄ±lÄ±yor (${this.macros.length} adet)...`);
         this.macros.forEach((cmd, index) => {
           setTimeout(
             () => {
@@ -271,7 +271,7 @@ class Bot {
           const match = message.match(pattern);
           if (match) {
             let sender = match[1];
-            sender = sender.replace(/§./g, "").trim();
+            sender = sender.replace(/Â§./g, "").trim();
             if (this.blockedPlayers.includes(sender)) {
               isBlockedWhisper = true;
               break;
@@ -330,26 +330,25 @@ class Bot {
     this.bot.on("kicked", (reason) => {
       this.status = "disconnected";
       const parsedReason = parseKickReason(reason);
-      this.log(`Sunucudan atıldı: ${parsedReason}`);
+      this.log(`Sunucudan atÄ±ldÄ±: ${parsedReason}`);
       this.emitUpdate();
       this.cleanup();
 
-      // Eğer proxy bizi çok hızlı girdiğimiz için atıyorsa bekleme süresini artır
       const lowerReason = parsedReason.toLowerCase();
       if (
-        lowerReason.includes("hızlı") ||
+        lowerReason.includes("hÄ±zlÄ±") ||
         lowerReason.includes("proxy") ||
-        lowerReason.includes("zaten bağlısınız")
+        lowerReason.includes("zaten baÄŸlÄ±sÄ±nÄ±z")
       ) {
-        this.log("Proxy koruması algılandı, bekleme süresi artırılıyor...");
-        this.reconnectAttempts = Math.max(this.reconnectAttempts, 2); // En az 15 sn beklemesi için attempt'i yükselt
+        this.log("Proxy korumasÄ± algÄ±landÄ±, bekleme sÃ¼resi artÄ±rÄ±lÄ±yor...");
+        this.reconnectAttempts = Math.max(this.reconnectAttempts, 2); // En az 15 sn beklemesi iÃ§in attempt'i yÃ¼kselt
       } else if (
         lowerReason.includes("dahili bir hata") ||
         lowerReason.includes("internal error") ||
         lowerReason.includes("internal exception")
       ) {
         this.log(
-          "Proxy dimension geçiş hatası algılandı, anında yeniden bağlanılıyor...",
+          "Proxy dimension geÃ§iÅŸ hatasÄ± algÄ±landÄ±, anÄ±nda yeniden baÄŸlanÄ±lÄ±yor...",
         );
         this.reconnectAttempts = 0; 
       }
@@ -366,7 +365,7 @@ class Bot {
 
     this.bot.on("end", (reason) => {
       this.status = "disconnected";
-      this.log(`Bağlantı kesildi: ${reason || "bilinmeyen sebep"}`);
+      this.log(`BaÄŸlantÄ± kesildi: ${reason || "bilinmeyen sebep"}`);
       this.emitUpdate();
       this.cleanup();
       if (!this.intentionalDisconnect) {
@@ -389,7 +388,7 @@ class Bot {
 
     
     this.bot.on("death", () => {
-      this.log("Bot öldü, otomatik yeniden doğuluyor...");
+      this.log("Bot Ã¶ldÃ¼, otomatik yeniden doÄŸuluyor...");
       this.emitUpdate();
     });
 
@@ -433,7 +432,7 @@ class Bot {
 
     if (this.reconnectAttempts >= this.maxReconnectAttempts) {
       this.log(
-        `Maksimum yeniden bağlanma denemesi (${this.maxReconnectAttempts}) aşıldı.`,
+        `Maksimum yeniden baÄŸlanma denemesi (${this.maxReconnectAttempts}) aÅŸÄ±ldÄ±.`,
       );
       return;
     }
@@ -442,7 +441,7 @@ class Bot {
     this.reconnectAttempts++;
     const delay = Math.min(5000 + this.reconnectAttempts * 5000, 45000); 
     this.log(
-      `${delay / 1000}s sonra yeniden bağlanılıyor... (${this.reconnectAttempts}/${this.maxReconnectAttempts})`,
+      `${delay / 1000}s sonra yeniden baÄŸlanÄ±lÄ±yor... (${this.reconnectAttempts}/${this.maxReconnectAttempts})`,
     );
 
     this.reconnectTimeout = setTimeout(() => {
@@ -713,7 +712,7 @@ class Bot {
       setTimeout(() => {
         if (this.bot) this.bot.setControlState("jump", false);
       }, 500);
-      this.log("Zıpladı.");
+      this.log("ZÄ±pladÄ±.");
     }
   }
 
@@ -750,7 +749,7 @@ class Bot {
     if (!this.bot || this.status !== "online") return;
     if (this.moveInterval) return;
 
-    this.log("Rastgele hareket başlatıldı.");
+    this.log("Rastgele hareket baÅŸlatÄ±ldÄ±.");
     const actions = ["forward", "back", "left", "right", "jump"];
 
     this.moveInterval = setInterval(() => {
@@ -891,7 +890,7 @@ class Bot {
         
         await this.bot.clickWindow(slot, mouseButton, mode);
       } catch (err) {
-        this.log(`Envanter tıklama hatası: ${err.message}`);
+        this.log(`Envanter tÄ±klama hatasÄ±: ${err.message}`);
       }
       this.emitInventory();
     }
@@ -980,10 +979,10 @@ class Bot {
     if (!this.bot || this.status !== "online") return;
     if (button === "left") {
       this.autoClickerLeft = setInterval(() => this.leftClick(), delay);
-      this.log(`Oto Sol-Tık başlatıldı (${delay}ms)`);
+      this.log(`Oto Sol-TÄ±k baÅŸlatÄ±ldÄ± (${delay}ms)`);
     } else {
       this.autoClickerRight = setInterval(() => this.rightClick(), delay);
-      this.log(`Oto Sağ-Tık başlatıldı (${delay}ms)`);
+      this.log(`Oto SaÄŸ-TÄ±k baÅŸlatÄ±ldÄ± (${delay}ms)`);
     }
   }
 
@@ -991,11 +990,11 @@ class Bot {
     if (button === "left" && this.autoClickerLeft) {
       clearInterval(this.autoClickerLeft);
       this.autoClickerLeft = null;
-      this.log("Oto Sol-Tık durduruldu.");
+      this.log("Oto Sol-TÄ±k durduruldu.");
     } else if (button === "right" && this.autoClickerRight) {
       clearInterval(this.autoClickerRight);
       this.autoClickerRight = null;
-      this.log("Oto Sağ-Tık durduruldu.");
+      this.log("Oto SaÄŸ-TÄ±k durduruldu.");
     }
   }
 
@@ -1027,9 +1026,9 @@ class Bot {
     if (this.autoAttackTimer) return;
 
     const delayStr = customDelay
-      ? `Özel Gecikme: ${customDelay}ms`
-      : "Otomatik (Silaha Göre)";
-    this.log(`Oto-Saldırı (Auto-Attack) aktif edildi. Mod: ${delayStr}`);
+      ? `Ã–zel Gecikme: ${customDelay}ms`
+      : "Otomatik (Silaha GÃ¶re)";
+    this.log(`Oto-SaldÄ±rÄ± (Auto-Attack) aktif edildi. Mod: ${delayStr}`);
 
     let lastAttackTime = 0;
 
@@ -1091,7 +1090,7 @@ class Bot {
     if (this.autoAttackTimer) {
       clearInterval(this.autoAttackTimer);
       this.autoAttackTimer = null;
-      this.log("Oto-Saldırı (Auto-Attack) durduruldu.");
+      this.log("Oto-SaldÄ±rÄ± (Auto-Attack) durduruldu.");
     }
   }
 

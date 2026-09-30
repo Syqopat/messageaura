@@ -1,4 +1,4 @@
-import subprocess
+﻿import subprocess
 import socket
 import sys
 import threading
@@ -63,7 +63,7 @@ def main():
     frontend_thread.start()
 
     def signal_handler(sig, frame):
-        print("\n[SYSTEM] MessageAura kapatılıyor...")
+        print("\n[SYSTEM] MessageAura kapatÄ±lÄ±yor...")
         if os.name == 'nt':
             subprocess.call(['taskkill', '/F', '/T', '/PID', str(backend_process.pid)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             subprocess.call(['taskkill', '/F', '/T', '/PID', str(frontend_process.pid)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
